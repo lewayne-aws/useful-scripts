@@ -36,10 +36,10 @@ groupadd -r dnsmasq
 useradd -r -g dnsmasq dnsmasq
 
 # Backup dnsmasq.conf
-cp /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+cp -n /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 
 # Create DNSMasq's resolv.conf
-cp /etc/resolv.conf $RESOLV_FILE
+cp -n /etc/resolv.conf $RESOLV_FILE
 
 chown root:root $RESOLV_FILE
 chmod 644 $RESOLV_FILE
