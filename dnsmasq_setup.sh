@@ -25,7 +25,7 @@ PID_FILE=/var/run/dnsmasq.pid
 RESOLV_FILE=/etc/resolv.dnsmasq
 
 # Local ip address. CoreDNS will not work correctly if we use 127.0.0.1
-LOCAL_IP=$(ip -4 addr show $LOCAL_INTERFACE | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+LOCAL_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
 
 # Update installed packages, and install dnsmasq
 yum -y update
