@@ -69,5 +69,10 @@ systemctl enable dnsmasq
 # Patch /sbin/dhclient-script to update based on $RESOLV_FILE (/etc/resolv.dnsmasq normally)
 sed -i.bak "s:\/etc\/resolv\.conf:$RESOLV_FILE:g" /sbin/dhclient-script
 chmod -x /sbin/dhclient-script.bak
+# Also patch network-scripts
+SEDSCRIPT="s:/etc/resolv.conf:$RESOLV_FILE:g"
+sed -i.bak $SEDSCRIPT /etc/sysconfig/network-scripts/ifup-post
+sed -i.bak $SEDSCRIPT /etc/sysconfig/network-scripts/network-functions
+sed -i.bak $SEDSCRIPT /etc/sysconfig/network-scripts/ifdown-post
 
 reboot
